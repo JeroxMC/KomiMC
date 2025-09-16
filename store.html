@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Store — Próximamente</title>
+  <style>
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    /* Fuente y layout */
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      overflow:hidden;
+      color: #ffffff;
+      background: linear-gradient(180deg,#1e90ff 0%, #0077be 50%, #005b9a 100%);
+    }
+
+    /* Animación de 'agua' (suave) */
+    .water {
+      position:fixed;
+      inset:0;
+      background: radial-gradient(circle at 20% 10%, rgba(255,255,255,0.06), transparent 10%),
+                  radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent 12%);
+      pointer-events:none;
+      mix-blend-mode: overlay;
+      animation: drift 12s linear infinite;
+    }
+    @keyframes drift{
+      0%{transform:translate3d(0,0,0)}
+      50%{transform:translate3d(2%, -1%, 0)}
+      100%{transform:translate3d(0,0,0)}
+    }
+
+    /* Ruido sutil para textura */
+    .noise{
+      position:fixed;inset:0;background-image:repeating-radial-gradient(circle at 10% 10%, rgba(0,0,0,0.02), rgba(0,0,0,0.02) 1px, transparent 2px);
+      opacity:0.25;mix-blend-mode:multiply;pointer-events:none;filter:blur(0.5px);
+    }
+
+    /* Card central */
+    .card{
+      position:relative;
+      z-index:2;
+      max-width:880px;
+      width:92%;
+      text-align:center;
+      padding:48px 28px;
+      border-radius:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: 0 10px 30px rgba(2,6,23,0.45), inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter: blur(6px) saturate(1.05);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    h1{
+      font-size: clamp(28px, 6vw, 56px);
+      letter-spacing: -0.02em;
+      margin-bottom:12px;
+      text-shadow: 0 6px 18px rgba(2,6,23,0.45);
+    }
+    p.lead{
+      opacity:0.95;
+      margin-bottom:18px;
+      font-size:clamp(14px, 2.6vw, 18px);
+    }
+
+    /* Botón de suscripción falso */
+    .cta{
+      display:inline-block;padding:12px 20px;border-radius:999px;font-weight:600;text-decoration:none;
+      background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.08);
+      transition: transform .18s ease, background .18s ease;
+    }
+    .cta:hover{transform:translateY(-4px);background: rgba(255,255,255,0.16)}
+
+    /* Olas SVG en la parte inferior */
+    .waves{
+      position:fixed;left:0;right:0;bottom:0;height:160px;z-index:1;opacity:0.9;
+    }
+
+    /* Pequeña animación para burbujas */
+    .bubble{
+      position:absolute;bottom:14vh;left:14%;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.12);box-shadow:0 6px 18px rgba(0,0,0,0.12);opacity:0.9;animation: rise 6s infinite ease-in;
+    }
+    .bubble.b2{left:32%;width:6px;height:6px;animation-duration:8s;bottom:8vh}
+    .bubble.b3{left:68%;width:8px;height:8px;animation-duration:5.6s;bottom:10vh}
+    @keyframes rise{0%{transform:translateY(0) scale(1);opacity:0.85}50%{opacity:0.5}100%{transform:translateY(-28vh) scale(1.4);opacity:0}}
+
+    /* Responsive tweaks */
+    @media (max-width:480px){.card{padding:28px;border-radius:14px}};
+  </style>
+</head>
+<body>
+  <div class="water"></div>
+  <div class="noise"></div>
+
+  <main class="card" role="main" aria-labelledby="titulo">
+    <h1 id="titulo">Proximamente la tienda</h1>
+    <p class="lead">Estamos trabajando en algo especial. Vuelve pronto 🌊</p>
+    <a class="cta" href="#" onclick="event.preventDefault();alert('Gracias por tu interés — aquí podrías poner un formulario de suscripción.');">Avisarme cuando abra</a>
+  </main>
+
+  <div class="bubble"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+
+  <!-- Olas SVG decorativas -->
+  <svg class="waves" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path d="M0,30 C150,90 350,0 600,30 C850,60 1050,10 1200,40 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.06)"></path>
+    <path d="M0,50 C180,10 340,100 600,60 C820,20 980,90 1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.04)"></path>
+  </svg>
+
+</body>
+</html>
